@@ -15,7 +15,7 @@ LimaWaktu is a Flutter application that provides prayer time schedules for diffe
 
 1. Clone the repository:
 ```shell
-git clone https://github.com/your-username/LimaWaktu.git
+git clone https://github.com/asrafilll/limawaktu.git
 ```
 
 2. Change to project directory and install dependencies: 
