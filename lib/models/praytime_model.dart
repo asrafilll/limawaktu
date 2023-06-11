@@ -1,39 +1,35 @@
 class PrayTimeModel {
   final String status;
-  final Query query;
-  final Jadwal jadwal;
+  final Schedule jadwal;
 
   PrayTimeModel({
     required this.status,
-    required this.query,
     required this.jadwal,
   });
 
   factory PrayTimeModel.fromJson(Map<String, dynamic> json) => PrayTimeModel(
         status: json["status"],
-        query: Query.fromJson(json["query"]),
-        jadwal: Jadwal.fromJson(json["jadwal"]),
+        jadwal: Schedule.fromJson(json["jadwal"]),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
-        "query": query.toJson(),
         "jadwal": jadwal.toJson(),
       };
 }
 
-class Jadwal {
+class Schedule {
   final String status;
-  final Data data;
+  final ScheduleData data;
 
-  Jadwal({
+  Schedule({
     required this.status,
     required this.data,
   });
 
-  factory Jadwal.fromJson(Map<String, dynamic> json) => Jadwal(
+  factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
         status: json["status"],
-        data: Data.fromJson(json["data"]),
+        data: ScheduleData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,7 +38,7 @@ class Jadwal {
       };
 }
 
-class Data {
+class ScheduleData {
   final String ashar;
   final String dhuha;
   final String dzuhur;
@@ -53,7 +49,7 @@ class Data {
   final String tanggal;
   final String terbit;
 
-  Data({
+  ScheduleData({
     required this.ashar,
     required this.dhuha,
     required this.dzuhur,
@@ -65,7 +61,7 @@ class Data {
     required this.terbit,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory ScheduleData.fromJson(Map<String, dynamic> json) => ScheduleData(
         ashar: json["ashar"],
         dhuha: json["dhuha"],
         dzuhur: json["dzuhur"],
@@ -87,30 +83,5 @@ class Data {
         "subuh": subuh,
         "tanggal": tanggal,
         "terbit": terbit,
-      };
-}
-
-class Query {
-  final String format;
-  final String kota;
-  final DateTime tanggal;
-
-  Query({
-    required this.format,
-    required this.kota,
-    required this.tanggal,
-  });
-
-  factory Query.fromJson(Map<String, dynamic> json) => Query(
-        format: json["format"],
-        kota: json["kota"],
-        tanggal: DateTime.parse(json["tanggal"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "format": format,
-        "kota": kota,
-        "tanggal":
-            "${tanggal.year.toString().padLeft(4, '0')}-${tanggal.month.toString().padLeft(2, '0')}-${tanggal.day.toString().padLeft(2, '0')}",
       };
 }

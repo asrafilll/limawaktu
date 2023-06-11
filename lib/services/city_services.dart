@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:limawaktu/constant.dart';
 import 'package:limawaktu/models/city.dart';
+import 'package:limawaktu/models/praytime_model.dart';
 
 class CityServices {
   final Dio dio = Dio();
@@ -16,5 +17,13 @@ class CityServices {
         ),
       ),
     );
+  }
+
+  Future<ScheduleData> getCityPraySchedule(String cityId, String date) async {
+    final response =
+        await dio.get('${Constants.apiURL}/jadwal/kota/$cityId/tanggal/$date');
+
+    final data = response.data['jadwal'];
+    return ScheduleData.fromJson(data['data']);
   }
 }
