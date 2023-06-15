@@ -4,7 +4,7 @@ import 'package:limawaktu/models/praytime_model.dart';
 
 import 'praytime_tile_component.dart';
 
-class PrayTimeSection extends StatelessWidget {
+class PrayTimeSection extends StatefulWidget {
   const PrayTimeSection({
     super.key,
     required this.scheduleData,
@@ -13,6 +13,11 @@ class PrayTimeSection extends StatelessWidget {
   final ScheduleData scheduleData;
 
   @override
+  State<PrayTimeSection> createState() => _PrayTimeSectionState();
+}
+
+class _PrayTimeSectionState extends State<PrayTimeSection> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -20,29 +25,38 @@ class PrayTimeSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            scheduleData.tanggal,
+            widget.scheduleData.tanggal,
             style: CustomTextStyle.h2TextStyle
                 .copyWith(color: AppColors.kblackTextColor),
           ),
           PrayTimeTileComponent(
             title: 'Subuh',
-            time: scheduleData.subuh,
+            time: widget.scheduleData.subuh,
           ),
           PrayTimeTileComponent(
             title: 'Dzuhur',
-            time: scheduleData.dzuhur,
+            time: widget.scheduleData.dzuhur,
           ),
           PrayTimeTileComponent(
             title: 'Ashar',
-            time: scheduleData.ashar,
+            time: widget.scheduleData.ashar,
           ),
           PrayTimeTileComponent(
             title: 'Maghrib',
-            time: scheduleData.maghrib,
+            time: widget.scheduleData.maghrib,
           ),
           PrayTimeTileComponent(
             title: 'Isya',
-            time: scheduleData.isya,
+            time: widget.scheduleData.isya,
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.15,
+          ),
+          Center(
+            child: Text(
+              'Pull Down to Refresh Prayer Time',
+              style: CustomTextStyle.smallBodyTextStyle,
+            ),
           ),
         ],
       ),
